@@ -197,5 +197,8 @@ public class Player extends Entity{
         }
         assert image != null;
         g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
+        // detection collision area, red rectangle on player
+//        g2.setColor(Color.red);
+//        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
     }
 }
