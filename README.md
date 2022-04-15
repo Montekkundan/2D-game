@@ -6,8 +6,9 @@
 - [x] Collision Detection
 - [x] Objects
 - [x] Collision with objects
+- [x] Sound
 - [x] Game UI
+- [x] Displaying collision area (extra for reference)
 
 ## Features pending-
-- [ ] Displaying collision area (extra for reference)
-- 
+
