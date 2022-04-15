@@ -14,6 +14,8 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public int hasKeys = 0;
+    boolean moving = false;
+    int pixelCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -21,12 +23,12 @@ public class Player extends Entity{
         screenY = gp.screenHeight/2-(gp.tileSize/2);
 
         solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y= 16;
+        solidArea.x = 1; // 8 if not tile bases movement
+        solidArea.y= 1; //  16 if not tile based movement
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = 46; // 32 if not tile based movement
+        solidArea.height = 46; // 32 if not tile based movement
 
         setDefaultValues();
         getPlayerImage();
@@ -71,31 +73,33 @@ public class Player extends Entity{
         }
     }
     public void update(){
-        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
-            if(keyH.upPressed){
-                direction = "up";
 
+        if(moving == false){
+            if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+                if (keyH.upPressed) {
+                    direction = "up";
+
+                } else if (keyH.downPressed) {
+                    direction = "down";
+
+                } else if (keyH.leftPressed) {
+                    direction = "left";
+
+                } else if (keyH.rightPressed) {
+                    direction = "right";
+
+                }
+                moving = true;
+                // Check tile collision
+                collisionOn = false;
+                gp.cChecker.checkTile(this);
+
+                // check object collision
+                int objIndex = gp.cChecker.checkObject(this, true);
+                pickUpObject(objIndex);
             }
-            else if(keyH.downPressed){
-                direction = "down";
-
-            }
-            else if(keyH.leftPressed){
-                direction = "left";
-
-            }
-            else if(keyH.rightPressed){
-                direction = "right";
-
-            }
-            // Check tile collision
-            collisionOn = false;
-            gp.cChecker.checkTile(this);
-
-            // check object collision
-            int objIndex = gp.cChecker.checkObject(this,true);
-            pickUpObject(objIndex);
-
+        }
+        if(moving == true){
             // If collision is false, player can move.
             if(collisionOn == false){
                 switch (direction) {
@@ -115,6 +119,11 @@ public class Player extends Entity{
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+            pixelCounter += speed;
+            if(pixelCounter == 48){
+                moving = false;
+                pixelCounter =0;
             }
         }
     }
@@ -198,7 +207,7 @@ public class Player extends Entity{
         assert image != null;
         g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
         // detection collision area, red rectangle on player
-//        g2.setColor(Color.red);
-//        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+        g2.setColor(Color.red);
+        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
     }
 }
