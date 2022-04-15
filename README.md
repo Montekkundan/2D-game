@@ -9,6 +9,7 @@
 - [x] Sound
 - [x] Game UI
 - [x] Displaying collision area (extra for reference)
+- [x] Added tile based movement of player 
 
 ## Features pending-
 
