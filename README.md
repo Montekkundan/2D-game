@@ -11,6 +11,7 @@
 - [x] Displaying collision area (extra for reference)
 - [x] Added tile based movement of player 
 - [x] improving pixel art
+- [x] added paused game state
 
 ## Features pending-
 
