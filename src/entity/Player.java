@@ -13,7 +13,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKeys = 0;
+//    public int hasKeys = 0;
     boolean moving = false;
     int pixelCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -130,6 +130,9 @@ public class Player extends Entity{
 
     public void pickUpObject(int i){
         if(i != 999){
+
+            // For treasure game, picking key, boots and opening doors.
+            /*
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Key":
@@ -137,7 +140,7 @@ public class Player extends Entity{
                     hasKeys++;
                     gp.obj[i] = null;
                     gp.ui.showMessage("You picked a Key!");
-//                    System.out.println("keys :" +hasKeys);
+                    System.out.println("keys :" +hasKeys);
                     break;
                 case "Door":
                     if(hasKeys >0){
@@ -149,7 +152,7 @@ public class Player extends Entity{
                     else{
                         gp.ui.showMessage("You need a Key!");
                     }
-//                    System.out.println("keys :" +hasKeys);
+                    System.out.println("keys :" +hasKeys);
                     break;
                 case "Boots":
                     gp.playSoundEffect(3);
@@ -163,6 +166,7 @@ public class Player extends Entity{
                     gp.playSoundEffect(2);
                     break;
             }
+             */
         }
     }
 

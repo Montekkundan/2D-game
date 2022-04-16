@@ -12,6 +12,8 @@ public class AssetSetter {
 
     }
     public void setObject(){
+        // For setting objects for treasure game
+        /*
         gp.obj[0] = new Key();
         gp.obj[0].worldX = 23 * gp.tileSize;
         gp.obj[0].worldY = 7 * gp.tileSize;
@@ -43,5 +45,6 @@ public class AssetSetter {
         gp.obj[7] = new Boots();
         gp.obj[7].worldX = 37 * gp.tileSize;
         gp.obj[7].worldY = 42 * gp.tileSize;
+         */
     }
 }

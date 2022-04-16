@@ -7,8 +7,9 @@ import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
+    Graphics2D g2;
     Font arial_40 , arial_80;
-    Image keyImage;
+//    Image keyImage;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -19,14 +20,27 @@ public class UI {
         this.gp =gp;
         arial_40 = new Font("Arial",Font.BOLD, 40);
         arial_80 = new Font("Arial",Font.BOLD, 80);
-        Key key = new Key();
-        keyImage = key.image.getImage();
+//        Key key = new Key();
+//        keyImage = key.image.getImage();
     }
     public void showMessage(String text){
         message = text;
         messageOn = true;
     }
     public void draw(Graphics2D g2){
+
+        this.g2 = g2;
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        if(gp.gameState == gp.playState){
+
+        }
+        if(gp.gameState == gp.pauseState){
+            drawPauseScreen();
+        }
+        // Treasure finding game UI
+        /*
+
         if(gameFinished == true){
             g2.setFont(arial_40);
             g2.setColor(Color.white);
@@ -77,6 +91,18 @@ public class UI {
                 }
             }
         }
+         */
+    }
+    public void drawPauseScreen(){
+        g2.setFont(g2.getFont().deriveFont(80F));
+        String text = "PAUSED";
+        int x = gettingCenterText(text);
 
+        int y = gp.screenHeight/2;
+        g2.drawString(text, x ,y);
+    }
+    public int gettingCenterText(String text){
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        return gp.screenWidth/2 - length/2;
     }
 }
