@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -39,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     // Entity
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[10];
 
     //Game State
     public int gameState=0;
@@ -56,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void setUpGame(){
         aSetter.setObject();
+        aSetter.setNpc();
         playMusic(0);
         gameState = playState;
     }
@@ -106,7 +109,14 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void update(){
         if(gameState == playState){
+            // Player
             player.update();
+            // Npc
+            for (int i = 0; i<npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
         }
         if(gameState == pauseState){
 
@@ -124,6 +134,13 @@ public class GamePanel extends JPanel implements Runnable{
                 obj[i].draw(g2, this);
             }
         }
+        // Npc
+        for (int i = 0; i<npc.length; i++){
+            if(npc[i] != null){
+                npc[i].draw(g2);
+            }
+        }
+
         //Player
         player.draw(g2);
 

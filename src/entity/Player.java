@@ -9,7 +9,6 @@ import java.awt.*;
 import java.io.InputStream;
 
 public class Player extends Entity{
-    GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
@@ -17,7 +16,7 @@ public class Player extends Entity{
     boolean moving = false;
     int pixelCounter = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
         this.keyH = keyH;
         screenX = gp.screenWidth/2 -(gp.tileSize/2);
         screenY = gp.screenHeight/2-(gp.tileSize/2);
@@ -97,6 +96,10 @@ public class Player extends Entity{
                 // check object collision
                 int objIndex = gp.cChecker.checkObject(this, true);
                 pickUpObject(objIndex);
+
+                // check npc collision
+                int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+                interactNpc(npcIndex);
             }
         }
         if(moving == true){
@@ -167,6 +170,11 @@ public class Player extends Entity{
                     break;
             }
              */
+        }
+    }
+    public void interactNpc(int i){
+        if(i != 999){
+
         }
     }
 
