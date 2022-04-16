@@ -10,9 +10,10 @@
 - [x] Game UI
 - [x] Displaying collision area (extra for reference)
 - [x] Added tile based movement of player 
+- [x] improving pixel art
 
 ## Features pending-
-- [ ] improving pixel art
+
 - [ ] stoping camera at the edge of the world
 - [ ] Npc
 - [ ] dialogues 
