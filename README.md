@@ -12,11 +12,11 @@
 - [x] Added tile based movement of player 
 - [x] improving pixel art
 - [x] added paused game state
+- [x] Npc
 
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Npc
 - [ ] dialogues 
 - [ ] Custom font
 - [ ] Title screen
