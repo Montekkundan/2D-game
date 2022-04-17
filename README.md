@@ -13,11 +13,11 @@
 - [x] improving pixel art
 - [x] added paused game state
 - [x] Npc
+- [x] dialogues 
 
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] dialogues 
 - [ ] Custom font
 - [ ] Title screen
 - [ ] Player life
