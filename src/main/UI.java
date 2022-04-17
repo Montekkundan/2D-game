@@ -12,10 +12,11 @@ public class UI {
 //    Image keyImage;
     public boolean messageOn = false;
     public String message = "";
-    int messageCounter = 0;
-    public boolean gameFinished = false;
-    double playTime;
-    DecimalFormat dFormat = new DecimalFormat("#0.00");
+//    int messageCounter = 0;
+//    public boolean gameFinished = false;
+//    double playTime;
+//    DecimalFormat dFormat = new DecimalFormat("#0.00");
+    public String currentDialogue = "";
     public UI(GamePanel gp){
         this.gp =gp;
         arial_40 = new Font("Arial",Font.BOLD, 40);
@@ -32,12 +33,19 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
+        //Playstate
         if(gp.gameState == gp.playState){
 
         }
+        //Pausestate
         if(gp.gameState == gp.pauseState){
             drawPauseScreen();
         }
+        //Dialogue state
+        if(gp.gameState == gp.dialogueState){
+            drawDialogueScreen();
+        }
+
         // Treasure finding game UI
         /*
 
@@ -93,6 +101,32 @@ public class UI {
         }
          */
     }
+
+    private void drawDialogueScreen() {
+        //Window
+        int x = gp.tileSize *2;
+        int y = gp.tileSize /2;
+        int width= gp.screenWidth - (gp.tileSize *4);
+        int height= gp.tileSize *4;
+        drawSubWindow(x,y,width,height);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,32F));
+        x+= gp.tileSize;
+        y+= gp.tileSize;
+        for(String line: currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40;
+        }
+    }
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c = new Color(25,25,25, 220);
+        g2.setColor(c);
+        g2.fillRoundRect(x,y,width,height,35,35);
+        c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    }
+
     public void drawPauseScreen(){
         g2.setFont(g2.getFont().deriveFont(80F));
         String text = "PAUSED";

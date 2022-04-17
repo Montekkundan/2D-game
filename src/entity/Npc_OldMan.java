@@ -15,6 +15,7 @@ public class Npc_OldMan extends Entity{
         direction = "down";
         speed =1;
         getNpcImage();
+        setDialogue();
     }
     public void getNpcImage() {
         InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/npc/tile000.png");
@@ -68,5 +69,15 @@ public class Npc_OldMan extends Entity{
             }
             actionLockCounter = 0;
         }
+    }
+    public void setDialogue(){
+        dialogues[0]="Hello, young adventurer!";
+        dialogues[1]="So you are here to find \nthe lost treasure of this island?!";
+        dialogues[2]="*Sigh* I too was an adventurer \nlike you... but now I'm lost \nin this island.";
+        dialogues[3]="Well I  hope you find the treasure!";
+
+    }
+    public void speak(){
+        super.speak();
     }
 }
