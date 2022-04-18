@@ -19,6 +19,74 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
+        //TitleState
+        if(gp.gameState == gp.titleState){
+            if(gp.ui.titleScreenState == 0) {
+                if (code == KeyEvent.VK_W) {
+                    gp.ui.commandNumber--;
+                    if (gp.ui.commandNumber < 0) {
+                        gp.ui.commandNumber = 2;
+                    }
+                }
+                if (code == KeyEvent.VK_S) {
+                    gp.ui.commandNumber++;
+                    if (gp.ui.commandNumber > 2) {
+                        gp.ui.commandNumber = 0;
+                    }
+                }
+                if (code == KeyEvent.VK_SPACE) {
+                    if (gp.ui.commandNumber == 0) {
+                        gp.ui.titleScreenState = 1;
+                    }
+                    if (gp.ui.commandNumber == 1) {
+
+                    }
+                    if (gp.ui.commandNumber == 2) {
+                        System.exit(0);
+                    }
+                }
+            }
+            else if(gp.ui.titleScreenState == 1) {
+                if (code == KeyEvent.VK_W) {
+                    gp.ui.commandNumber--;
+                    if (gp.ui.commandNumber < 0) {
+                        gp.ui.commandNumber = 4;
+                    }
+                }
+                if (code == KeyEvent.VK_S) {
+                    gp.ui.commandNumber++;
+                    if (gp.ui.commandNumber > 4) {
+                        gp.ui.commandNumber = 0;
+                    }
+                }
+                if (code == KeyEvent.VK_SPACE) {
+                    if (gp.ui.commandNumber == 0) {
+                        gp.player.playerSelector = 1;
+                        gp.gameState = gp.playState;
+                        gp.playMusic(0);
+                    }
+                    if (gp.ui.commandNumber == 1) {
+                        gp.player.playerSelector = 1;
+                        gp.gameState = gp.playState;
+                        gp.playMusic(0);
+                    }
+                    if (gp.ui.commandNumber == 2) {
+                        gp.player.playerSelector = 2;
+                        gp.gameState = gp.playState;
+                        gp.playMusic(0);
+                    }
+                    if (gp.ui.commandNumber == 3) {
+                        gp.player.playerSelector = 3;
+                        gp.gameState = gp.playState;
+                        gp.playMusic(0);
+                    }
+                    if (gp.ui.commandNumber == 4) {
+                        gp.ui.commandNumber = 0;
+                        gp.ui.titleScreenState = 0;
+                    }
+                }
+            }
+        }
 
         //PlayState
         if(gp.gameState == gp.playState) {

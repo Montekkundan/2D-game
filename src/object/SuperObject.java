@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SuperObject {
-    public ImageIcon image;
+    public ImageIcon image, image2, image3;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;

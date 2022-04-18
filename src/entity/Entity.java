@@ -10,7 +10,7 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-    public ImageIcon up1, up2, down1, down2, left1, left2, right1, right2;
+    public ImageIcon up1, up2, down1, down2, left1, left2, right1, right2, stand;
     public String direction;
 
     public int spriteCounter = 0;
@@ -21,6 +21,10 @@ public class Entity {
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
+
+    //Character Status
+    public int maxLife;
+    public int life;
 
     public Entity(GamePanel gp){
         this.gp =gp;

@@ -15,6 +15,7 @@ public class Player extends Entity{
 //    public int hasKeys = 0;
     boolean moving = false;
     int pixelCounter = 0;
+    public int playerSelector;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.keyH = keyH;
@@ -37,38 +38,155 @@ public class Player extends Entity{
         worldY= gp.tileSize * 21 ;
         speed =4;
         direction = "down";
+        // Player status
+        maxLife = 6;
+        life = maxLife;
     }
     public void getPlayerImage() {
-        InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/player/tile001.png");
-        InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/player/tile002.png");
-        InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/player/tile009.png");
-        InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/player/tile011.png");
-        InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/player/tile003.png");
-        InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/player/tile005.png");
-        InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/player/tile006.png");
-        InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/player/tile008.png");
+        if(playerSelector == 0) {
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile001.png");
+            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile000.png");
+            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile002.png");
+            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile009.png");
+            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile011.png");
+            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile003.png");
+            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile005.png");
+            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile006.png");
+            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile008.png");
 
-        try{
-            assert d_1 != null;
-            down1 = new ImageIcon(ImageIO.read(d_1));
-            assert d_2 != null;
-            down2 = new ImageIcon(ImageIO.read(d_2));
-            assert u_1 != null;
-            up1 = new ImageIcon(ImageIO.read(u_1));
-            assert u_2 != null;
-            up2 = new ImageIcon(ImageIO.read(u_2));
-            assert l_1 != null;
-            left1 = new ImageIcon(ImageIO.read(l_1));
-            assert l_2 != null;
-            left2 = new ImageIcon(ImageIO.read(l_2));
-            assert r_1 != null;
-            right1 = new ImageIcon(ImageIO.read(r_1));
-            assert r_2 != null;
-            right2 = new ImageIcon(ImageIO.read(r_2));
+            try {
 
+                assert s != null;
+                stand = new ImageIcon(ImageIO.read(s));
+                assert d_1 != null;
+                down1 = new ImageIcon(ImageIO.read(d_1));
+                assert d_2 != null;
+                down2 = new ImageIcon(ImageIO.read(d_2));
+                assert u_1 != null;
+                up1 = new ImageIcon(ImageIO.read(u_1));
+                assert u_2 != null;
+                up2 = new ImageIcon(ImageIO.read(u_2));
+                assert l_1 != null;
+                left1 = new ImageIcon(ImageIO.read(l_1));
+                assert l_2 != null;
+                left2 = new ImageIcon(ImageIO.read(l_2));
+                assert r_1 != null;
+                right1 = new ImageIcon(ImageIO.read(r_1));
+                assert r_2 != null;
+                right2 = new ImageIcon(ImageIO.read(r_2));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        catch(Exception e){
-            e.printStackTrace();
+
+        else if(playerSelector == 1) {
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/mage/tile001.png");
+            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile000.png");
+            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile002.png");
+            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile009.png");
+            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile011.png");
+            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile003.png");
+            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile005.png");
+            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile006.png");
+            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile008.png");
+
+            try {
+
+                assert s != null;
+                stand = new ImageIcon(ImageIO.read(s));
+                assert d_1 != null;
+                down1 = new ImageIcon(ImageIO.read(d_1));
+                assert d_2 != null;
+                down2 = new ImageIcon(ImageIO.read(d_2));
+                assert u_1 != null;
+                up1 = new ImageIcon(ImageIO.read(u_1));
+                assert u_2 != null;
+                up2 = new ImageIcon(ImageIO.read(u_2));
+                assert l_1 != null;
+                left1 = new ImageIcon(ImageIO.read(l_1));
+                assert l_2 != null;
+                left2 = new ImageIcon(ImageIO.read(l_2));
+                assert r_1 != null;
+                right1 = new ImageIcon(ImageIO.read(r_1));
+                assert r_2 != null;
+                right2 = new ImageIcon(ImageIO.read(r_2));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(playerSelector == 2) {
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/assassin/tile001.png");
+            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile000.png");
+            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile002.png");
+            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile009.png");
+            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile011.png");
+            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile003.png");
+            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile005.png");
+            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile006.png");
+            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile008.png");
+
+            try {
+
+                assert s != null;
+                stand = new ImageIcon(ImageIO.read(s));
+                assert d_1 != null;
+                down1 = new ImageIcon(ImageIO.read(d_1));
+                assert d_2 != null;
+                down2 = new ImageIcon(ImageIO.read(d_2));
+                assert u_1 != null;
+                up1 = new ImageIcon(ImageIO.read(u_1));
+                assert u_2 != null;
+                up2 = new ImageIcon(ImageIO.read(u_2));
+                assert l_1 != null;
+                left1 = new ImageIcon(ImageIO.read(l_1));
+                assert l_2 != null;
+                left2 = new ImageIcon(ImageIO.read(l_2));
+                assert r_1 != null;
+                right1 = new ImageIcon(ImageIO.read(r_1));
+                assert r_2 != null;
+                right2 = new ImageIcon(ImageIO.read(r_2));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(playerSelector == 3) {
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/santa/tile001.png");
+            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile000.png");
+            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile002.png");
+            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile009.png");
+            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile011.png");
+            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile003.png");
+            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile005.png");
+            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile006.png");
+            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile008.png");
+
+            try {
+
+                assert s != null;
+                stand = new ImageIcon(ImageIO.read(s));
+                assert d_1 != null;
+                down1 = new ImageIcon(ImageIO.read(d_1));
+                assert d_2 != null;
+                down2 = new ImageIcon(ImageIO.read(d_2));
+                assert u_1 != null;
+                up1 = new ImageIcon(ImageIO.read(u_1));
+                assert u_2 != null;
+                up2 = new ImageIcon(ImageIO.read(u_2));
+                assert l_1 != null;
+                left1 = new ImageIcon(ImageIO.read(l_1));
+                assert l_2 != null;
+                left2 = new ImageIcon(ImageIO.read(l_2));
+                assert r_1 != null;
+                right1 = new ImageIcon(ImageIO.read(r_1));
+                assert r_2 != null;
+                right2 = new ImageIcon(ImageIO.read(r_2));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     public void update(){

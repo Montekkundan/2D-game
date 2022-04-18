@@ -1,7 +1,11 @@
 package main;
 
+import object.Hearts;
 import object.Key;
+import object.SuperObject;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +15,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40 , arial_80, maruMonica;
+    ImageIcon heart_full, heart_half, heart_blank;
 //    Image keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -19,6 +24,8 @@ public class UI {
 //    double playTime;
 //    DecimalFormat dFormat = new DecimalFormat("#0.00");
     public String currentDialogue = "";
+    public int commandNumber =0;
+    public int titleScreenState = 0;
     public UI(GamePanel gp){
         this.gp =gp;
         arial_40 = new Font("Arial",Font.BOLD, 40);
@@ -29,6 +36,14 @@ public class UI {
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
+
+        // Create HUD object
+        SuperObject heart = new Hearts(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
+
+
 //        Key key = new Key();
 //        keyImage = key.image.getImage();
     }
@@ -41,16 +56,24 @@ public class UI {
         this.g2 = g2;
         g2.setFont(maruMonica);
         g2.setColor(Color.white);
+
+        //TitleState
+        if(gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
+
         //Playstate
         if(gp.gameState == gp.playState){
-
+            drawPlayerLife();
         }
         //Pausestate
         if(gp.gameState == gp.pauseState){
+            drawPlayerLife();
             drawPauseScreen();
         }
         //Dialogue state
         if(gp.gameState == gp.dialogueState){
+            drawPlayerLife();
             drawDialogueScreen();
         }
 
@@ -108,6 +131,147 @@ public class UI {
             }
         }
          */
+    }
+
+    private void drawPlayerLife() {
+        int x  = gp.tileSize/2;
+        int y  = gp.tileSize/2;
+        int i =0;
+        //Drawing blank heart
+        while(i<gp.player.maxLife/2){
+            g2.drawImage(heart_blank.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+            i++;
+            x+=gp.tileSize;
+        }
+        // reset
+        x  = gp.tileSize/2;
+        y  = gp.tileSize/2;
+        i =0;
+
+        //draw current life
+        while(i<gp.player.life){
+            g2.drawImage(heart_half.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+            i++;
+            if(i<gp.player.life){
+                g2.drawImage(heart_full.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+            }
+            i++;
+            x+=gp.tileSize;
+        }
+    }
+
+    private void drawTitleScreen() {
+        if(titleScreenState == 0) {
+            Color c = new Color(25, 25, 25);
+            g2.setColor(c);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            // Title name
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+            String text = "Adventure Game";
+            int x = gettingCenterText(text);
+            int y = gp.tileSize * 3;
+            //text shadow
+            g2.setColor(Color.red);
+            g2.drawString(text, x + 5, y + 5);
+            //main text color
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
+            // character image
+            x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+            y += gp.tileSize * 2;
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile001.png");
+            InputStream s_1 = getClass().getClassLoader().getResourceAsStream("res/npc/tile000.png");
+
+            ImageIcon stand = null;
+            ImageIcon stand_1 = null;
+            try {
+                assert s != null;
+                stand = new ImageIcon(ImageIO.read(s));
+                assert s_1 != null;
+                stand_1 = new ImageIcon(ImageIO.read(s_1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            assert stand != null;
+            assert stand_1 != null;
+            g2.drawImage(stand_1.getImage(), (int) (x+(gp.tileSize*1.5)), y, gp.tileSize * 2, gp.tileSize * 2, null);
+            g2.drawImage(stand.getImage(), x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+
+            //menu
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+            text = "NEW GAME";
+            x = gettingCenterText(text);
+            y += gp.tileSize * 3.5;
+            g2.drawString(text, x, y);
+            if (commandNumber == 0) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+
+            text = "LOAD GAME";
+            x = gettingCenterText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 1) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+
+            text = "QUIT";
+            x = gettingCenterText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 2) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+        }
+        else if(titleScreenState == 1){
+            Color c = new Color(25, 25, 25);
+            g2.setColor(c);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            // class slection screen
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 42F));
+            String text = "Select your class";
+            int x = gettingCenterText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+
+            text = "WARRIOR";
+            x = gettingCenterText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if (commandNumber == 0) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+            text = "Mage";
+            x = gettingCenterText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 1) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+            text = "Assassin";
+            x = gettingCenterText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 2) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+            text = "Santa";
+            x = gettingCenterText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNumber == 3) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+            text = "Back";
+            x = gettingCenterText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if (commandNumber == 4) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+        }
+
     }
 
     private void drawDialogueScreen() {
