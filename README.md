@@ -14,11 +14,11 @@
 - [x] added paused game state
 - [x] Npc
 - [x] dialogues 
+- [x] Custom font
 
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Custom font
 - [ ] Title screen
 - [ ] Player life
 - [ ] Monster
