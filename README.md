@@ -1,4 +1,8 @@
 # 2D-game
+##Bugs-
+- Player Selection: No change of character image.
+- Player and npc collision bug.
+
 ## Features added-
 
 - [x] Player
