@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import object.Hearts;
 import object.Key;
 import object.SuperObject;
@@ -38,7 +39,7 @@ public class UI {
         }
 
         // Create HUD object
-        SuperObject heart = new Hearts(gp);
+        Entity heart = new Hearts(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;

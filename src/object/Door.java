@@ -1,11 +1,15 @@
 package object;
 
+import entity.Entity;
+import main.GamePanel;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.InputStream;
 
-public class Door extends SuperObject{
-    public Door(){
+public class Door extends Entity {
+    public Door(GamePanel gp){
+        super(gp);
         name= "Door";
         InputStream t_1 = getClass().getClassLoader().getResourceAsStream("res/objects/door.png");
         try {
@@ -16,5 +20,11 @@ public class Door extends SuperObject{
             e.printStackTrace();
         }
         collision = true;
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidArea.width = 48;
+        solidArea.height= 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 }

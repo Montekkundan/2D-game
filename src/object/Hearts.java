@@ -1,15 +1,15 @@
 package object;
 
+import entity.Entity;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.InputStream;
 
-public class Hearts extends SuperObject{
-    GamePanel gp;
+public class Hearts extends Entity {
     public Hearts(GamePanel gp){
-        this.gp = gp;
+        super(gp);
         name= "Heart";
         InputStream t_1 = getClass().getClassLoader().getResourceAsStream("res/objects/heart_full.png");
         InputStream t_2 = getClass().getClassLoader().getResourceAsStream("res/objects/heart_half.png");
