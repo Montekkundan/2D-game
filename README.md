@@ -1,4 +1,8 @@
 # 2D-game
+## Bugs-
+- Player Selection: No change of character image.
+- Player and npc collision bug.
+
 ## Features added-
 
 - [x] Player
@@ -15,12 +19,12 @@
 - [x] Npc
 - [x] dialogues 
 - [x] Custom font
-
+- [x] Title screen
+- [x] Player life
+- [x] Player Selection screen
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Title screen
-- [ ] Player life
 - [ ] Monster
 - [ ] Hit detection
 - [ ] level up, damage calculation
