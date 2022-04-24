@@ -2,10 +2,12 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
 public class Player extends Entity{
@@ -43,149 +45,31 @@ public class Player extends Entity{
     }
     public void getPlayerImage() {
         if(playerSelector == 0) {
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile000.png");
-            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile000.png");
-            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile002.png");
-            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile009.png");
-            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile011.png");
-            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile003.png");
-            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile005.png");
-            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile006.png");
-            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile008.png");
-
-            try {
-
-                assert s != null;
-                stand = new ImageIcon(ImageIO.read(s));
-                assert d_1 != null;
-                down1 = new ImageIcon(ImageIO.read(d_1));
-                assert d_2 != null;
-                down2 = new ImageIcon(ImageIO.read(d_2));
-                assert u_1 != null;
-                up1 = new ImageIcon(ImageIO.read(u_1));
-                assert u_2 != null;
-                up2 = new ImageIcon(ImageIO.read(u_2));
-                assert l_1 != null;
-                left1 = new ImageIcon(ImageIO.read(l_1));
-                assert l_2 != null;
-                left2 = new ImageIcon(ImageIO.read(l_2));
-                assert r_1 != null;
-                right1 = new ImageIcon(ImageIO.read(r_1));
-                assert r_2 != null;
-                right2 = new ImageIcon(ImageIO.read(r_2));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            stand = setup("/res/player/boy_down_1");
+            up1 = setup("/res/player/boy_up_1");
+            up2 = setup("/res/player/boy_up_2");
+            down1 = setup("/res/player/boy_down_1");
+            down2 = setup("/res/player/boy_down_2");
+            left1 = setup("/res/player/boy_left_1");
+            left2 = setup("/res/player/boy_left_2");
+            right1 = setup("/res/player/boy_right_1");
+            right2 = setup("/res/player/boy_right_2");
         }
 
-        else if(playerSelector == 1) {
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/mage/tile001.png");
-            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile000.png");
-            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile002.png");
-            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile009.png");
-            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile011.png");
-            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile003.png");
-            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile005.png");
-            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/mage/tile006.png");
-            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/mage/tile008.png");
-
-            try {
-
-                assert s != null;
-                stand = new ImageIcon(ImageIO.read(s));
-                assert d_1 != null;
-                down1 = new ImageIcon(ImageIO.read(d_1));
-                assert d_2 != null;
-                down2 = new ImageIcon(ImageIO.read(d_2));
-                assert u_1 != null;
-                up1 = new ImageIcon(ImageIO.read(u_1));
-                assert u_2 != null;
-                up2 = new ImageIcon(ImageIO.read(u_2));
-                assert l_1 != null;
-                left1 = new ImageIcon(ImageIO.read(l_1));
-                assert l_2 != null;
-                left2 = new ImageIcon(ImageIO.read(l_2));
-                assert r_1 != null;
-                right1 = new ImageIcon(ImageIO.read(r_1));
-                assert r_2 != null;
-                right2 = new ImageIcon(ImageIO.read(r_2));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else if(playerSelector == 2) {
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/assassin/tile001.png");
-            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile000.png");
-            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile002.png");
-            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile009.png");
-            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile011.png");
-            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile003.png");
-            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile005.png");
-            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile006.png");
-            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/assassin/tile008.png");
-
-            try {
-
-                assert s != null;
-                stand = new ImageIcon(ImageIO.read(s));
-                assert d_1 != null;
-                down1 = new ImageIcon(ImageIO.read(d_1));
-                assert d_2 != null;
-                down2 = new ImageIcon(ImageIO.read(d_2));
-                assert u_1 != null;
-                up1 = new ImageIcon(ImageIO.read(u_1));
-                assert u_2 != null;
-                up2 = new ImageIcon(ImageIO.read(u_2));
-                assert l_1 != null;
-                left1 = new ImageIcon(ImageIO.read(l_1));
-                assert l_2 != null;
-                left2 = new ImageIcon(ImageIO.read(l_2));
-                assert r_1 != null;
-                right1 = new ImageIcon(ImageIO.read(r_1));
-                assert r_2 != null;
-                right2 = new ImageIcon(ImageIO.read(r_2));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else if(playerSelector == 3) {
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/santa/tile001.png");
-            InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile000.png");
-            InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile002.png");
-            InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile009.png");
-            InputStream u_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile011.png");
-            InputStream l_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile003.png");
-            InputStream l_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile005.png");
-            InputStream r_1 = getClass().getClassLoader().getResourceAsStream("res/santa/tile006.png");
-            InputStream r_2 = getClass().getClassLoader().getResourceAsStream("res/santa/tile008.png");
-
-            try {
-
-                assert s != null;
-                stand = new ImageIcon(ImageIO.read(s));
-                assert d_1 != null;
-                down1 = new ImageIcon(ImageIO.read(d_1));
-                assert d_2 != null;
-                down2 = new ImageIcon(ImageIO.read(d_2));
-                assert u_1 != null;
-                up1 = new ImageIcon(ImageIO.read(u_1));
-                assert u_2 != null;
-                up2 = new ImageIcon(ImageIO.read(u_2));
-                assert l_1 != null;
-                left1 = new ImageIcon(ImageIO.read(l_1));
-                assert l_2 != null;
-                left2 = new ImageIcon(ImageIO.read(l_2));
-                assert r_1 != null;
-                right1 = new ImageIcon(ImageIO.read(r_1));
-                assert r_2 != null;
-                right2 = new ImageIcon(ImageIO.read(r_2));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    }
+    public void getPlayerAttackImage(){
+        try {
+            stand = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_down_1.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_up_2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_down_2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_left_1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_left_2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_attack_right_2.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void update(){
@@ -321,7 +205,7 @@ public class Player extends Entity{
     public void draw(Graphics2D g2){
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y,gp.tileSize, gp.tileSize);
-        ImageIcon image = null;
+        BufferedImage image = null;
         switch (direction) {
             case "up" -> {
                 if (spriteNum == 1) {
@@ -359,8 +243,7 @@ public class Player extends Entity{
         if(invincible == true){
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
-        assert image != null;
-        g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX , screenY,null);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         // detection collision area, red rectangle on player

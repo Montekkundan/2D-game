@@ -8,6 +8,7 @@ import object.SuperObject;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -16,7 +17,9 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40 , arial_80, maruMonica;
-    ImageIcon heart_full, heart_half, heart_blank;
+    BufferedImage heart_full;
+    BufferedImage heart_half;
+    BufferedImage heart_blank;
 //    Image keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -141,7 +144,7 @@ public class UI {
         int i =0;
         //Drawing blank heart
         while(i<gp.player.maxLife/2){
-            g2.drawImage(heart_blank.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+            g2.drawImage(heart_blank,x,y,gp.tileSize,gp.tileSize,null);
             i++;
             x+=gp.tileSize;
         }
@@ -152,10 +155,10 @@ public class UI {
 
         //draw current life
         while(i<gp.player.life){
-            g2.drawImage(heart_half.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+            g2.drawImage(heart_half,x,y,gp.tileSize,gp.tileSize,null);
             i++;
             if(i<gp.player.life){
-                g2.drawImage(heart_full.getImage(),x,y,gp.tileSize,gp.tileSize,null);
+                g2.drawImage(heart_full,x,y,gp.tileSize,gp.tileSize,null);
             }
             i++;
             x+=gp.tileSize;
@@ -181,23 +184,7 @@ public class UI {
             // character image
             x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
             y += gp.tileSize * 2;
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile001.png");
-            InputStream s_1 = getClass().getClassLoader().getResourceAsStream("res/npc/tile000.png");
-
-            ImageIcon stand = null;
-            ImageIcon stand_1 = null;
-            try {
-                assert s != null;
-                stand = new ImageIcon(ImageIO.read(s));
-                assert s_1 != null;
-                stand_1 = new ImageIcon(ImageIO.read(s_1));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            assert stand != null;
-            assert stand_1 != null;
-            g2.drawImage(stand_1.getImage(), (int) (x+(gp.tileSize*1.5)), y, gp.tileSize * 2, gp.tileSize * 2, null);
-            g2.drawImage(stand.getImage(), x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+            g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
             //menu
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));

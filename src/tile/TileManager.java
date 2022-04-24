@@ -1,6 +1,7 @@
 package tile;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,246 +24,72 @@ public class TileManager {
 
     }
     public void getTileImage(){
-        //Unused tiles
-        InputStream t_1 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_2 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_3 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_4 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_5 =getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_6 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_7 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_8 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_9 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_10 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        //Using tiles
-        InputStream t_11 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass00.png");
-        InputStream t_12 = getClass().getClassLoader().getResourceAsStream("res/tiles/grass01.png");
-        InputStream t_13 = getClass().getClassLoader().getResourceAsStream("res/tiles/water00.png");
-        InputStream t_14 = getClass().getClassLoader().getResourceAsStream("res/tiles/water01.png");
-        InputStream t_15 = getClass().getClassLoader().getResourceAsStream("res/tiles/water02.png");
-        InputStream t_16 = getClass().getClassLoader().getResourceAsStream("res/tiles/water03.png");
-        InputStream t_17 = getClass().getClassLoader().getResourceAsStream("res/tiles/water04.png");
-        InputStream t_18 = getClass().getClassLoader().getResourceAsStream("res/tiles/water05.png");
-        InputStream t_19 = getClass().getClassLoader().getResourceAsStream("res/tiles/water06.png");
-        InputStream t_20 = getClass().getClassLoader().getResourceAsStream("res/tiles/water07.png");
-        InputStream t_21 = getClass().getClassLoader().getResourceAsStream("res/tiles/water08.png");
-        InputStream t_22 = getClass().getClassLoader().getResourceAsStream("res/tiles/water09.png");
-        InputStream t_23 = getClass().getClassLoader().getResourceAsStream("res/tiles/water10.png");
-        InputStream t_24 = getClass().getClassLoader().getResourceAsStream("res/tiles/water11.png");
-        InputStream t_25 = getClass().getClassLoader().getResourceAsStream("res/tiles/water12.png");
-        InputStream t_26 = getClass().getClassLoader().getResourceAsStream("res/tiles/water13.png");
-        InputStream t_27 = getClass().getClassLoader().getResourceAsStream("res/tiles/road00.png");
-        InputStream t_28 = getClass().getClassLoader().getResourceAsStream("res/tiles/road01.png");
-        InputStream t_29 = getClass().getClassLoader().getResourceAsStream("res/tiles/road02.png");
-        InputStream t_30 = getClass().getClassLoader().getResourceAsStream("res/tiles/road03.png");
-        InputStream t_31 = getClass().getClassLoader().getResourceAsStream("res/tiles/road04.png");
-        InputStream t_32 = getClass().getClassLoader().getResourceAsStream("res/tiles/road05.png");
-        InputStream t_33 = getClass().getClassLoader().getResourceAsStream("res/tiles/road06.png");
-        InputStream t_34 = getClass().getClassLoader().getResourceAsStream("res/tiles/road07.png");
-        InputStream t_35 = getClass().getClassLoader().getResourceAsStream("res/tiles/road08.png");
-        InputStream t_36 = getClass().getClassLoader().getResourceAsStream("res/tiles/road09.png");
-        InputStream t_37 = getClass().getClassLoader().getResourceAsStream("res/tiles/road10.png");
-        InputStream t_38 = getClass().getClassLoader().getResourceAsStream("res/tiles/road11.png");
-        InputStream t_39 = getClass().getClassLoader().getResourceAsStream("res/tiles/road12.png");
-        InputStream t_40 = getClass().getClassLoader().getResourceAsStream("res/tiles/earth.png");
-        InputStream t_41 = getClass().getClassLoader().getResourceAsStream("res/tiles/wall.png");
-        InputStream t_42 = getClass().getClassLoader().getResourceAsStream("res/tiles/tree.png");
-
-
         try {
-            tile[0] = new Tile();
-            assert t_1 != null;
-            tile[0].image = new ImageIcon(ImageIO.read(t_1));
-
-            tile[1] = new Tile();
-            assert t_2 != null;
-            tile[1].image = new ImageIcon(ImageIO.read(t_2));
-            tile[1].collision = true;
-
-            tile[2] = new Tile();
-            assert t_3 != null;
-            tile[2].image = new ImageIcon(ImageIO.read(t_3));
-
-            tile[3] = new Tile();
-            assert t_4 != null;
-            tile[3].image = new ImageIcon(ImageIO.read(t_4));
-
-            tile[4] = new Tile();
-            assert t_5 != null;
-            tile[4].image = new ImageIcon(ImageIO.read(t_5));
-
-            tile[5] = new Tile();
-            assert t_6 != null;
-            tile[5].image = new ImageIcon(ImageIO.read(t_6));
-
-            tile[6] = new Tile();
-            assert t_7 != null;
-            tile[6].image = new ImageIcon(ImageIO.read(t_7));
-
-            tile[7] = new Tile();
-            assert t_8 != null;
-            tile[7].image = new ImageIcon(ImageIO.read(t_8));
-
-            tile[8] = new Tile();
-            assert t_9 != null;
-            tile[8].image = new ImageIcon(ImageIO.read(t_9));
-
-            tile[9] = new Tile();
-            assert t_10 != null;
-            tile[9].image = new ImageIcon(ImageIO.read(t_10));
-
-            tile[10] = new Tile();
-            assert t_11 != null;
-            tile[10].image = new ImageIcon(ImageIO.read(t_11));
-
-            tile[11] = new Tile();
-            assert t_12 != null;
-            tile[11].image = new ImageIcon(ImageIO.read(t_12));
-
-            tile[12] = new Tile();
-            assert t_13 != null;
-            tile[12].image = new ImageIcon(ImageIO.read(t_13));
-            tile[12].collision = true;
-
-            tile[13] = new Tile();
-            assert t_14 != null;
-            tile[13].image = new ImageIcon(ImageIO.read(t_14));
-            tile[13].collision = true;
-
-            tile[14] = new Tile();
-            assert t_15 != null;
-            tile[14].image = new ImageIcon(ImageIO.read(t_15));
-            tile[14].collision = true;
-
-            tile[15] = new Tile();
-            assert t_16 != null;
-            tile[15].image = new ImageIcon(ImageIO.read(t_16));
-            tile[15].collision = true;
-
-            tile[16] = new Tile();
-            assert t_17 != null;
-            tile[16].image = new ImageIcon(ImageIO.read(t_17));
-            tile[16].collision = true;
-
-            tile[17] = new Tile();
-            assert t_18 != null;
-            tile[17].image = new ImageIcon(ImageIO.read(t_18));
-            tile[17].collision = true;
-
-            tile[18] = new Tile();
-            assert t_19 != null;
-            tile[18].image = new ImageIcon(ImageIO.read(t_19));
-            tile[18].collision = true;
-
-            tile[19] = new Tile();
-            assert t_20 != null;
-            tile[19].image = new ImageIcon(ImageIO.read(t_20));
-            tile[19].collision = true;
-
-            tile[20] = new Tile();
-            assert t_21 != null;
-            tile[20].image = new ImageIcon(ImageIO.read(t_21));
-            tile[20].collision = true;
-
-            tile[21] = new Tile();
-            assert t_22 != null;
-            tile[21].image = new ImageIcon(ImageIO.read(t_22));
-            tile[21].collision = true;
-
-            tile[22] = new Tile();
-            assert t_23 != null;
-            tile[22].image = new ImageIcon(ImageIO.read(t_23));
-            tile[22].collision = true;
-
-            tile[23] = new Tile();
-            assert t_24 != null;
-            tile[23].image = new ImageIcon(ImageIO.read(t_24));
-            tile[23].collision = true;
-
-            tile[24] = new Tile();
-            assert t_25 != null;
-            tile[24].image = new ImageIcon(ImageIO.read(t_25));
-            tile[24].collision = true;
-
-            tile[25] = new Tile();
-            assert t_26 != null;
-            tile[25].image = new ImageIcon(ImageIO.read(t_26));
-            tile[25].collision = true;
-
-            tile[26] = new Tile();
-            assert t_27 != null;
-            tile[26].image = new ImageIcon(ImageIO.read(t_27));
-
-            tile[27] = new Tile();
-            assert t_28 != null;
-            tile[27].image = new ImageIcon(ImageIO.read(t_28));
-
-            tile[28] = new Tile();
-            assert t_29 != null;
-            tile[28].image = new ImageIcon(ImageIO.read(t_29));
-
-            tile[29] = new Tile();
-            assert t_30 != null;
-            tile[29].image = new ImageIcon(ImageIO.read(t_30));
-
-            tile[30] = new Tile();
-            assert t_31 != null;
-            tile[30].image = new ImageIcon(ImageIO.read(t_31));
-
-            tile[31] = new Tile();
-            assert t_32 != null;
-            tile[31].image = new ImageIcon(ImageIO.read(t_32));
-
-            tile[32] = new Tile();
-            assert t_33 != null;
-            tile[32].image = new ImageIcon(ImageIO.read(t_33));
-
-            tile[33] = new Tile();
-            assert t_34 != null;
-            tile[33].image = new ImageIcon(ImageIO.read(t_34));
-
-            tile[34] = new Tile();
-            assert t_35 != null;
-            tile[34].image = new ImageIcon(ImageIO.read(t_35));
-
-            tile[35] = new Tile();
-            assert t_36 != null;
-            tile[35].image = new ImageIcon(ImageIO.read(t_36));
-
-            tile[36] = new Tile();
-            assert t_37 != null;
-            tile[36].image = new ImageIcon(ImageIO.read(t_37));
-
-            tile[37] = new Tile();
-            assert t_38 != null;
-            tile[37].image = new ImageIcon(ImageIO.read(t_38));
-
-            tile[38] = new Tile();
-            assert t_39 != null;
-            tile[38].image = new ImageIcon(ImageIO.read(t_39));
-
-            tile[39] = new Tile();
-            assert t_40 != null;
-            tile[39].image = new ImageIcon(ImageIO.read(t_40));
-
-            tile[40] = new Tile();
-            assert t_41 != null;
-            tile[40].image = new ImageIcon(ImageIO.read(t_41));
-            tile[40].collision = true;
-
-            tile[41] = new Tile();
-            assert t_42 != null;
-            tile[41].image = new ImageIcon(ImageIO.read(t_42));
-            tile[41].collision = true;
-
-
-
-
+            setup(0,"grass00", false);
+            setup(1,"grass00", false);
+            setup(2,"grass00", false);
+            setup(3,"grass00", false);
+            setup(4,"grass00", false);
+            setup(5,"grass00", false);
+            setup(6,"grass00", false);
+            setup(7,"grass00", false);
+            setup(8,"grass00", false);
+            setup(9,"grass00", false);
+            // placeholder
+            setup(10,"grass00", false);
+            setup(11,"grass01", false);
+            //water
+            setup(12,"water00", true);
+            setup(13,"water01", true);
+            setup(14,"water02", true);
+            setup(15,"water03", true);
+            setup(16,"water04", true);
+            setup(17,"water05", true);
+            setup(18,"water06", true);
+            setup(19,"water07", true);
+            setup(20,"water08", true);
+            setup(21,"water09", true);
+            setup(22,"water10", true);
+            setup(23,"water11", true);
+            setup(24,"water12", true);
+            setup(25,"water13", true);
+            //road
+            setup(26,"road00", false);
+            setup(27,"road01", false);
+            setup(28,"road02", false);
+            setup(29,"road03", false);
+            setup(30,"road04", false);
+            setup(31,"road05", false);
+            setup(32,"road06", false);
+            setup(33,"road07", false);
+            setup(34,"road08", false);
+            setup(35,"road09", false);
+            setup(36,"road10", false);
+            setup(37,"road11", false);
+            setup(38,"road12", false);
+            // other
+            setup(39,"earth", false);
+            setup(40,"wall", true);
+            setup(41,"tree", true);
             }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+    }
+    public void setup(int index, String imagePath, boolean collision){
+        UtilityTool utool = new UtilityTool();
+
+        try{
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" +imagePath+".png"));
+            tile[index].image = utool.scaleImage(tile[index].image,gp.tileSize,gp.tileSize);
+            tile[index].collision = collision;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     public void loadMap(String filePath){
         try{
@@ -310,7 +137,7 @@ public class TileManager {
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
             if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
-                g2.drawImage(tile[tileNum].image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX , screenY,null);
             }
             worldCol++;
 //            x += gp.tileSize;

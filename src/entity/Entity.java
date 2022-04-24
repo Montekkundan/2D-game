@@ -1,20 +1,25 @@
 package entity;
 
 import main.GamePanel;
+import main.UtilityTool;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Entity {
     GamePanel gp;
-    public ImageIcon up1, up2, down1, down2, left1, left2, right1, right2, stand;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, stand;
     public ImageIcon attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX , solidAreaDefaultY;
     public int invincibleCounter = 0;
     String dialogues[] = new String[20];
-    public ImageIcon image, image2, image3;
+    public BufferedImage image;
+    public BufferedImage image2;
+    public BufferedImage image3;
     public String name;
 
 
@@ -35,6 +40,17 @@ public class Entity {
     //Character Status
     public int maxLife;
     public int life;
+    public int level;
+    public int strength;
+    public int dexterity;
+    public int attack;
+    public int defence;
+    public int exp;
+    public int nextLevelExp;
+    public int coin;
+    public Entity currentWeapon;
+    public Entity currentShield;
+
     public int type; // 0 - player, 1-npc, 2- monster
     public int speed;
 
@@ -43,6 +59,18 @@ public class Entity {
     }
     public void setAction(){
 
+    }
+    public BufferedImage setup(String imageName){
+        UtilityTool utool = new UtilityTool();
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream(imageName +".png"));
+            image = utool.scaleImage(image,gp.tileSize, gp.tileSize);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return image;
     }
     public void speak(){
         if(dialogues[dialogueIndex] == null){
@@ -102,7 +130,7 @@ public class Entity {
         }
     }
     public void draw(Graphics2D g2){
-        ImageIcon image = null;
+        BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
@@ -148,8 +176,8 @@ public class Entity {
                 g2.setColor(new Color(255, 0, 30));
                 g2.fillRect(screenX, screenY-15, gp.tileSize, 10);
             }
-            assert image != null;
-            g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX , screenY, null);
         }
     }
+
 }

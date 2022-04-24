@@ -67,17 +67,17 @@ public class KeyHandler implements KeyListener {
 
                     }
                     if (gp.ui.commandNumber == 1) {
-                        gp.player.playerSelector = 1;
+                        gp.player.playerSelector = 0;
                         gp.gameState = gp.playState;
                         gp.playMusic(0);
                     }
                     if (gp.ui.commandNumber == 2) {
-                        gp.player.playerSelector = 2;
+                        gp.player.playerSelector = 0;
                         gp.gameState = gp.playState;
                         gp.playMusic(0);
                     }
                     if (gp.ui.commandNumber == 3) {
-                        gp.player.playerSelector = 3;
+                        gp.player.playerSelector = 0;
                         gp.gameState = gp.playState;
                         gp.playMusic(0);
                     }
