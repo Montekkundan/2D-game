@@ -9,9 +9,10 @@ import java.io.InputStream;
 import java.util.Random;
 
 public class MON_Ghost extends Entity {
-
+    GamePanel gp;
     public MON_Ghost(GamePanel gp) {
         super(gp);
+        this.gp =gp;
         type =2;
         name = "Ghost";
         speed = 1;
@@ -26,14 +27,14 @@ public class MON_Ghost extends Entity {
         getImage();
     }
     public void getImage(){
-        up1 = setup("/res/monster/ghost/tile009");
-        up2 = setup("/res/monster/ghost/tile011");
-        down1 = setup("/res/monster/ghost/tile000");
-        down2 = setup("/res/monster/ghost/tile002");
-        left1 = setup("/res/monster/ghost/tile003");
-        left2 = setup("/res/monster/ghost/tile005");
-        right1 = setup("/res/monster/ghost/tile006");
-        right2 = setup("/res/monster/ghost/tile008");
+        up1 = setup("/res/monster/ghost/tile009", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/monster/ghost/tile011", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/monster/ghost/tile000", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/monster/ghost/tile002", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/monster/ghost/tile003", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/monster/ghost/tile005", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/monster/ghost/tile006", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/monster/ghost/tile008", gp.tileSize, gp.tileSize);
     }
     public void setAction() {
         actionLockCounter++;

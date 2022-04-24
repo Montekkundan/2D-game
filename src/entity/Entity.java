@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Entity {
     GamePanel gp;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, stand;
-    public ImageIcon attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX , solidAreaDefaultY;
@@ -60,12 +60,12 @@ public class Entity {
     public void setAction(){
 
     }
-    public BufferedImage setup(String imageName){
+    public BufferedImage setup(String imageName, int width, int height){
         UtilityTool utool = new UtilityTool();
         BufferedImage image = null;
         try {
             image = ImageIO.read(getClass().getResourceAsStream(imageName +".png"));
-            image = utool.scaleImage(image,gp.tileSize, gp.tileSize);
+            image = utool.scaleImage(image,width, height);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -128,6 +128,13 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+        if (invincible == true) {
+            invincibleCounter++;
+            if(invincibleCounter > 40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
@@ -176,7 +183,11 @@ public class Entity {
                 g2.setColor(new Color(255, 0, 30));
                 g2.fillRect(screenX, screenY-15, gp.tileSize, 10);
             }
+            if(invincible == true){
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            }
             g2.drawImage(image, screenX , screenY, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
 

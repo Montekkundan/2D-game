@@ -7,7 +7,7 @@ import main.GamePanel;
 public class Boots extends Entity {
     public Boots(GamePanel gp) {
         super(gp);
-        down1 = setup("/res/objects/boots");
+        down1 = setup("/res/objects/boots", gp.tileSize, gp.tileSize);
     }
 
 }
