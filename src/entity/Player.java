@@ -3,6 +3,8 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.Sword;
+import object.Wooden_shield;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +19,7 @@ public class Player extends Entity{
     public final int screenY;
 //    public int hasKeys = 0;
     public int playerSelector;
+    public boolean attackCanceled = false;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.gp = gp;
@@ -46,6 +49,22 @@ public class Player extends Entity{
         direction = "down";
         maxLife = 6;
         life = maxLife;
+        level = 1;
+        strength =1;
+        dexterity =1;
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentWeapon = new Sword(gp);
+        currentShield = new Wooden_shield(gp);
+        attack = getAttack();
+        defence = getDefence();
+    }
+    public int getAttack(){
+        return attack = strength * currentWeapon.attackValue;
+    }
+    public int getDefence(){
+        return defence = dexterity * currentShield.defenceValue;
     }
     public void getPlayerImage() {
         if(playerSelector == 0) {
@@ -120,8 +139,16 @@ public class Player extends Entity{
                     case "right" -> worldX += speed;
                 }
             }
-            gp.keyH.spacePressed = false;
 
+
+            if(gp.keyH.spacePressed == true && attackCanceled == false){
+                gp.playSoundEffect(7);
+                attacking = true;
+                spriteCounter = 0;
+            }
+            attackCanceled = false;
+
+            gp.keyH.spacePressed = false;
             spriteCounter++;
             if(spriteCounter > 10){
                 if(spriteNum == 1){
@@ -225,15 +252,11 @@ public class Player extends Entity{
     public void interactNpc(int i){
         if(gp.keyH.spacePressed == true) {
             if (i != 999) {
-
+                attackCanceled = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
-            } else {
-                if (keyH.spacePressed == true) {
-                    gp.playSoundEffect(7);
-                    attacking = true;
-                }
             }
+
         }
 
 //        gp.keyH.spacePressed = false;
@@ -242,7 +265,11 @@ public class Player extends Entity{
         if(i !=999){
             if(invincible == false) {
                 gp.playSoundEffect(6);
-                life -= 1;
+                int damage = gp.monster[i].attack - defence;
+                if(damage < 0){
+                    damage = 0;
+                }
+                life -= damage;
                 invincible = true;
             }
         }
@@ -251,7 +278,11 @@ public class Player extends Entity{
         if(i != 999){
             if(gp.monster[i].invincible == false){
                 gp.playSoundEffect(5);
-                gp.monster[i].life -= 1;
+                int damage = attack - gp.monster[i].defence;
+                if(damage < 0){
+                    damage = 0;
+                }
+                gp.monster[i].life -= damage;
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
                 if(gp.monster[i].life <= 0){

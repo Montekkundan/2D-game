@@ -18,12 +18,8 @@ public class MON_Ghost extends Entity {
         speed = 1;
         maxLife = 4;
         life = maxLife;
-        solidArea.x = 1; // 8 if not tile bases movement
-        solidArea.y= 1; //  16 if not tile based movement
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
-        solidArea.width = 46; // 32 if not tile based movement
-        solidArea.height = 46; // 32 if not tile based movement
+        attack =5;
+        defence = 0;
         getImage();
     }
     public void getImage(){

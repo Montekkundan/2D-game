@@ -53,14 +53,19 @@ public class EventHandler {
     public void damagePit(int col, int row,int gameState) {
 
         gp.gameState = gameState;
+        gp.playSoundEffect(6);
         gp.ui.currentDialogue = "You fell into a pit!";
         gp.player.life -= 1;
         canTouchEvent = false; // one time damage on player arrival
     }
     public void healingPool(int col, int row,int gameState){
+        if(gp.keyH.spacePressed == true) {
+            gp.playSoundEffect(3);
+            gp.player.attackCanceled = true;
             gp.gameState = gameState;
             gp.ui.currentDialogue = "You drank water. \nYou are now healed.";
             gp.player.life = gp.player.maxLife;
+        }
 
     }
     public void teleport(int col, int row,int gameState){

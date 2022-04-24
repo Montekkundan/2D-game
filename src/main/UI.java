@@ -80,6 +80,10 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+        //Character State
+        if(gp.gameState == gp.characterState){
+            drawCharacterScreen();
+        }
 
         // Treasure finding game UI
         /*
@@ -278,8 +282,104 @@ public class UI {
             y += 40;
         }
     }
+    public void drawCharacterScreen(){
+        // create frame
+        final int frameX = gp.tileSize;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize*5;
+        final int frameHeight = gp.tileSize*10;
+        drawSubWindow(frameX,frameY,frameWidth,frameHeight);
+
+        //text
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+
+        int textX = frameX + 20;
+        int textY = frameY + gp.tileSize;
+        final int lineHeight = 35;
+        
+        //names
+        g2.drawString("Level", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Life",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Strength",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Dexterity",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Attack",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Defence",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Exp",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Next Level",textX, textY);
+        textY += lineHeight;
+        g2.drawString("Coins",textX, textY);
+        textY += lineHeight+20;
+        g2.drawString("Weapon",textX, textY);
+        textY += lineHeight+15;
+        g2.drawString("Shield",textX, textY);
+        textY += lineHeight;
+
+        // values
+        int tailX = (frameX + frameWidth) - 30;
+        //reset textY
+        textY = frameY + gp.tileSize;
+        String value;
+
+        value = String.valueOf(gp.player.level);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.strength);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.dexterity);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.attack);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.defence);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.exp);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.nextLevelExp);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.coin);
+        textX = gettingTextAlignRight(value,tailX);
+        g2.drawString(value, textX,textY);
+        textY += lineHeight;
+
+        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY-14, null);
+        textY += gp.tileSize;
+        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY-14, null);
+
+    }
     public void drawSubWindow(int x, int y, int width, int height){
-        Color c = new Color(25,25,25, 220);
+        Color c = new Color(25,25,25, 230);
         g2.setColor(c);
         g2.fillRoundRect(x,y,width,height,35,35);
         c = new Color(255,255,255);
@@ -299,5 +399,9 @@ public class UI {
     public int gettingCenterText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gp.screenWidth/2 - length/2;
+    }
+    public int gettingTextAlignRight(String text, int tailX){
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        return tailX - length;
     }
 }
