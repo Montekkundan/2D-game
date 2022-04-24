@@ -43,7 +43,7 @@ public class Player extends Entity{
     }
     public void getPlayerImage() {
         if(playerSelector == 0) {
-            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile001.png");
+            InputStream s = getClass().getClassLoader().getResourceAsStream("res/warrior/tile000.png");
             InputStream d_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile000.png");
             InputStream d_2 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile002.png");
             InputStream u_1 = getClass().getClassLoader().getResourceAsStream("res/warrior/tile009.png");
@@ -189,7 +189,7 @@ public class Player extends Entity{
         }
     }
     public void update(){
-        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
+        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.spacePressed == true){
             if(keyH.upPressed){
                 direction = "up";
 
@@ -220,12 +220,13 @@ public class Player extends Entity{
 
             // check monster collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
 
             //check event
             gp.eHandler.checkEvent();
 
             // If collision is false, player can move.
-            if(collisionOn == false){
+            if(collisionOn == false && keyH.spacePressed == false){
                 switch (direction) {
                     case "up" -> worldY -= speed;
                     case "down" -> worldY += speed;
@@ -233,7 +234,7 @@ public class Player extends Entity{
                     case "right" -> worldX += speed;
                 }
             }
-
+            gp.keyH.spacePressed = false;
             spriteCounter++;
             if(spriteCounter > 10){
                 if(spriteNum == 1){
@@ -296,12 +297,25 @@ public class Player extends Entity{
     }
     public void interactNpc(int i){
         if(i != 999) {
-//            if (gp.keyH.spacePressed == true) {
+
             gp.gameState = gp.dialogueState;
             gp.npc[i].speak();
-//            }
         }
+        else{
+            if(keyH.spacePressed == true){
+                attacking = true;
+            }
+        }
+
 //        gp.keyH.spacePressed = false;
+    }
+    public void contactMonster(int i){
+        if(i !=999){
+            if(invincible == false) {
+                life -= 1;
+                invincible = true;
+            }
+        }
     }
 
     public void draw(Graphics2D g2){

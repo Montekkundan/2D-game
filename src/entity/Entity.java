@@ -7,30 +7,36 @@ import java.awt.*;
 
 public class Entity {
     GamePanel gp;
-    public int worldX, worldY;
-    public int speed;
-
     public ImageIcon up1, up2, down1, down2, left1, left2, right1, right2, stand;
-    public String direction = "down";
-
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
+    public ImageIcon attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX , solidAreaDefaultY;
-    public boolean collisionOn = false;
-    public int actionLockCounter = 0;
-    public boolean invincible = false;
     public int invincibleCounter = 0;
     String dialogues[] = new String[20];
-    int dialogueIndex = 0;
     public ImageIcon image, image2, image3;
     public String name;
+
+
+    //State
+    public int worldX, worldY;
+    public String direction = "down";
+    public int spriteNum = 1;
+    int dialogueIndex = 0;
     public boolean collision = false;
-    public int type; // 0 - player, 1-npc, 2- monster
+    public boolean invincible = false;
+    boolean attacking = false;
+
+    //Counter
+    public boolean collisionOn = false;
+    public int actionLockCounter = 0;
+    public int spriteCounter = 0;
 
     //Character Status
     public int maxLife;
     public int life;
+    public int type; // 0 - player, 1-npc, 2- monster
+    public int speed;
 
     public Entity(GamePanel gp){
         this.gp =gp;
@@ -134,6 +140,13 @@ public class Entity {
                         image = right2;
                     }
                 }
+            }
+            //Monster Hp bar
+            if(type ==2) {
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY-15, gp.tileSize, 10);
             }
             assert image != null;
             g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
