@@ -9,26 +9,26 @@ import java.awt.*;
 import java.io.InputStream;
 
 public class Player extends Entity{
+    GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
 //    public int hasKeys = 0;
-    boolean moving = false;
-    int pixelCounter = 0;
     public int playerSelector;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
+        this.gp = gp;
         this.keyH = keyH;
         screenX = gp.screenWidth/2 -(gp.tileSize/2);
         screenY = gp.screenHeight/2-(gp.tileSize/2);
 
         solidArea = new Rectangle();
-        solidArea.x = 1; // 8 if not tile bases movement
-        solidArea.y= 1; //  16 if not tile based movement
+        solidArea.x = 8;
+        solidArea.y= 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 46; // 32 if not tile based movement
-        solidArea.height = 46; // 32 if not tile based movement
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         setDefaultValues();
         getPlayerImage();
@@ -38,7 +38,6 @@ public class Player extends Entity{
         worldY= gp.tileSize * 21 ;
         speed =4;
         direction = "down";
-        // Player status
         maxLife = 6;
         life = maxLife;
     }
@@ -190,40 +189,41 @@ public class Player extends Entity{
         }
     }
     public void update(){
+        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
+            if(keyH.upPressed){
+                direction = "up";
 
-        if(moving == false){
-            if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
-                if (keyH.upPressed) {
-                    direction = "up";
-
-                } else if (keyH.downPressed) {
-                    direction = "down";
-
-                } else if (keyH.leftPressed) {
-                    direction = "left";
-
-                } else if (keyH.rightPressed) {
-                    direction = "right";
-
-                }
-                moving = true;
-                // Check tile collision
-                collisionOn = false;
-                gp.cChecker.checkTile(this);
-
-                // check object collision
-                int objIndex = gp.cChecker.checkObject(this, true);
-                pickUpObject(objIndex);
-
-                // check npc collision
-                int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-                interactNpc(npcIndex);
-
-                //check event
-                gp.eHandler.checkEvent();
             }
-        }
-        if(moving == true){
+            else if(keyH.downPressed){
+                direction = "down";
+
+            }
+            else if(keyH.leftPressed){
+                direction = "left";
+
+            }
+            else if(keyH.rightPressed){
+                direction = "right";
+
+            }
+            // Check tile collision
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            // check object collision
+            int objIndex = gp.cChecker.checkObject(this,true);
+            pickUpObject(objIndex);
+
+            // check npc collision
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNpc(npcIndex);
+
+            // check monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+
+            //check event
+            gp.eHandler.checkEvent();
+
             // If collision is false, player can move.
             if(collisionOn == false){
                 switch (direction) {
@@ -244,18 +244,18 @@ public class Player extends Entity{
                 }
                 spriteCounter = 0;
             }
-            pixelCounter += speed;
-            if(pixelCounter == 48){
-                moving = false;
-                pixelCounter =0;
+        }
+        if (invincible == true) {
+            invincibleCounter++;
+            if(invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
             }
         }
     }
 
     public void pickUpObject(int i){
         if(i != 999){
-
-            // For treasure game, picking key, boots and opening doors.
             /*
             String objectName = gp.obj[i].name;
             switch (objectName){
@@ -264,7 +264,7 @@ public class Player extends Entity{
                     hasKeys++;
                     gp.obj[i] = null;
                     gp.ui.showMessage("You picked a Key!");
-                    System.out.println("keys :" +hasKeys);
+//                    System.out.println("keys :" +hasKeys);
                     break;
                 case "Door":
                     if(hasKeys >0){
@@ -276,7 +276,7 @@ public class Player extends Entity{
                     else{
                         gp.ui.showMessage("You need a Key!");
                     }
-                    System.out.println("keys :" +hasKeys);
+//                    System.out.println("keys :" +hasKeys);
                     break;
                 case "Boots":
                     gp.playSoundEffect(3);
@@ -290,14 +290,15 @@ public class Player extends Entity{
                     gp.playSoundEffect(2);
                     break;
             }
+
              */
         }
     }
     public void interactNpc(int i){
         if(i != 999) {
 //            if (gp.keyH.spacePressed == true) {
-                gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+            gp.gameState = gp.dialogueState;
+            gp.npc[i].speak();
 //            }
         }
 //        gp.keyH.spacePressed = false;
@@ -341,8 +342,13 @@ public class Player extends Entity{
                 }
             }
         }
+        if(invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
         assert image != null;
         g2.drawImage(image.getImage(), screenX , screenY, gp.tileSize, gp.tileSize, null);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
         // detection collision area, red rectangle on player
 //        g2.setColor(Color.red);
 //        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);

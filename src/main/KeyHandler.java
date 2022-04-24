@@ -61,9 +61,10 @@ public class KeyHandler implements KeyListener {
                 }
                 if (code == KeyEvent.VK_SPACE) {
                     if (gp.ui.commandNumber == 0) {
-                        gp.player.playerSelector = 1;
+                        gp.player.playerSelector = 0;
                         gp.gameState = gp.playState;
                         gp.playMusic(0);
+
                     }
                     if (gp.ui.commandNumber == 1) {
                         gp.player.playerSelector = 1;
