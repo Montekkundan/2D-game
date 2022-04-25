@@ -20,6 +20,7 @@ public class MON_Ghost extends Entity {
         life = maxLife;
         attack =5;
         defence = 0;
+        exp = 2;
         getImage();
     }
     public void getImage(){

@@ -65,6 +65,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.ui.currentDialogue = "You drank water. \nYou are now healed.";
             gp.player.life = gp.player.maxLife;
+            gp.aSetter.setMonster();
         }
 
     }
