@@ -171,8 +171,11 @@ public class KeyHandler implements KeyListener {
                 gp.ui.slotCol++;
                 gp.playSoundEffect(9);
             }
-
         }
+        if (code == KeyEvent.VK_SPACE) {
+            gp.player.selectItem();
+        }
+
     }
 
     @Override

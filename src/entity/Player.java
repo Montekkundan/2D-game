@@ -35,9 +35,6 @@ public class Player extends Entity{
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
@@ -69,6 +66,7 @@ public class Player extends Entity{
 
     }
     public int getAttack(){
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
     public int getDefence(){
@@ -89,14 +87,26 @@ public class Player extends Entity{
 
     }
     public void getPlayerAttackImage(){
-        attackUp1 = setup("/res/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
-        attackUp2 = setup("/res/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
-        attackDown1 = setup("/res/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setup("/res/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
-        attackLeft1 = setup("/res/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setup("/res/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
-        attackRight1 = setup("/res/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setup("/res/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
+        if(currentWeapon.type == type_sword) {
+            attackUp1 = setup("/res/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/res/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setup("/res/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setup("/res/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setup("/res/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setup("/res/player/boy_attack_left_2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setup("/res/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setup("/res/player/boy_attack_right_2", gp.tileSize * 2, gp.tileSize);
+        }
+        if(currentWeapon.type == type_axe){
+            attackUp1 = setup("/res/player/boy_axe_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/res/player/boy_axe_up_2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setup("/res/player/boy_axe_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setup("/res/player/boy_axe_down_2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setup("/res/player/boy_axe_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setup("/res/player/boy_axe_left_2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setup("/res/player/boy_axe_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setup("/res/player/boy_axe_right_2", gp.tileSize * 2, gp.tileSize);
+        }
     }
     public void update(){
         if(attacking == true){
@@ -219,42 +229,17 @@ public class Player extends Entity{
     }
     public void pickUpObject(int i){
         if(i != 999){
-            /*
-            String objectName = gp.obj[i].name;
-            switch (objectName){
-                case "Key":
-                    gp.playSoundEffect(1);
-                    hasKeys++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You picked a Key!");
-//                    System.out.println("keys :" +hasKeys);
-                    break;
-                case "Door":
-                    if(hasKeys >0){
-                        gp.playSoundEffect(4);
-                        gp.obj[i] = null;
-                        hasKeys--;
-                        gp.ui.showMessage("You opened the door!");
-                    }
-                    else{
-                        gp.ui.showMessage("You need a Key!");
-                    }
-//                    System.out.println("keys :" +hasKeys);
-                    break;
-                case "Boots":
-                    gp.playSoundEffect(3);
-                    speed += 2;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("Speed Up!");
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    gp.playSoundEffect(2);
-                    break;
+            String text;
+            if(inventory.size() != maxInventorySize){
+                inventory.add(gp.obj[i]);
+                gp.playSoundEffect(1);
+                text = "Picked a "+ gp.obj[i].name+ "!";
             }
-
-             */
+            else{
+                text = "Your inventory is full!";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
     public void interactNpc(int i){
@@ -316,6 +301,25 @@ public class Player extends Entity{
             gp.playSoundEffect(8);
             gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = "You are level "+level+ " now!\n"+"You feel stronger!";
+        }
+    }
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type == type_sword || selectedItem.type == type_axe ){
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackImage();
+            }
+            if(selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defence = getDefence();
+            }
+            if(selectedItem.type == type_consumable){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
         }
     }
     public void draw(Graphics2D g2){
