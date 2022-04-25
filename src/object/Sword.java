@@ -9,5 +9,6 @@ public class Sword extends Entity {
         name = "Sword";
         down1 = setup("/res/objects/sword", gp.tileSize, gp.tileSize);
         attackValue= 1;
+        description = "["+name+"]\n An old sword.";
     }
 }

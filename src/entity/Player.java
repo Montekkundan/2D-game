@@ -2,15 +2,12 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
+import object.Key;
 import object.Sword;
 import object.Wooden_shield;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Player extends Entity{
     GamePanel gp;
@@ -20,6 +17,9 @@ public class Player extends Entity{
 //    public int hasKeys = 0;
     public int playerSelector;
     public boolean attackCanceled = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
+
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.gp = gp;
@@ -41,6 +41,7 @@ public class Player extends Entity{
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
     public void setDefaultValues(){
         worldX= gp.tileSize * 23;
@@ -59,6 +60,13 @@ public class Player extends Entity{
         currentShield = new Wooden_shield(gp);
         attack = getAttack();
         defence = getDefence();
+    }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new Key(gp));
+        inventory.add(new Key(gp));
+
     }
     public int getAttack(){
         return attack = strength * currentWeapon.attackValue;
