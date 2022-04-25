@@ -24,10 +24,10 @@
 - [x] Monster
 - [x] Hit detection
 - [x] character staus
+- [x] level up, damage calculation
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] level up, damage calculation
 - [ ] Inventory 
 - [ ] Equip & use
 - [ ] Projectiles
