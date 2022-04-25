@@ -23,6 +23,7 @@
 - [x] Player Selection screen
 - [x] Monster
 - [x] Hit detection
+- [x] character staus
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
