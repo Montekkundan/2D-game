@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.Fireball;
 import object.Key;
 import object.Sword;
 import object.Wooden_shield;
@@ -55,6 +56,7 @@ public class Player extends Entity{
         coin = 0;
         currentWeapon = new Sword(gp);
         currentShield = new Wooden_shield(gp);
+        projectile = new Fireball(gp);
         attack = getAttack();
         defence = getDefence();
     }
@@ -178,12 +180,21 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30){
+            projectile.set(worldX, worldY, direction, true,this);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
+            gp.playSoundEffect(10);
+        }
         if (invincible == true) {
             invincibleCounter++;
             if(invincibleCounter > 60){
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
         }
     }
     public void attacking(){
@@ -212,7 +223,7 @@ public class Player extends Entity{
             solidArea.height =attackArea.height;
             // check monster collision
             int monsterIndex = gp.cChecker.checkEntity(this,gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
             // after checking collision restore default values
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -267,9 +278,9 @@ public class Player extends Entity{
             }
         }
     }
-    public void damageMonster(int i){
+    public void damageMonster(int i, int attack){
         if(i != 999){
-            if(gp.monster[i].invincible == false){
+            if(gp.monster[i].invincible == false && gp.monster[i].dying == false){
                 gp.playSoundEffect(5);
                 int damage = attack - gp.monster[i].defence;
                 if(damage < 0){

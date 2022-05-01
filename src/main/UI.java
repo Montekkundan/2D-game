@@ -1,8 +1,10 @@
 package main;
 
 import entity.Entity;
+import entity.Npc_OldMan;
 import object.Hearts;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
