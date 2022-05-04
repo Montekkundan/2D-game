@@ -1,6 +1,7 @@
 # 2D-game
-## Bugs-
+## Known issues-
 - Player Selection: No change of character image.
+- npc, monster and coin png image background is black
 
 ## Features added-
 
@@ -29,8 +30,8 @@
 - [x] Equip & use
 - [x] Projectiles
 - [x] Monster Projectiles
+- [x] Item drops
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Item drops
 - [ ] Cutting trees
