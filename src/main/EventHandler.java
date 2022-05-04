@@ -38,10 +38,10 @@ public class EventHandler {
             if (hit(27, 16, "right")) {
                 damagePit(27, 16, gp.dialogueState);
             }
-            if (hit(23, 7, "down")) {
+            if (hit(23, 12, "up")) {
                 healingPool(23, 12, gp.dialogueState);
             }
-            if (hit(23, 12, "up")) {
+            if (hit(23, 7, "down")) {
                 teleport(23, 7, gp.dialogueState);
             }
             if (hit(38, 10, "up")) {
