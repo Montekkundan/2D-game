@@ -2,6 +2,9 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import object.Coin;
+import object.Hearts;
+import object.ManaCrystal;
 import object.Rock;
 
 import javax.imageio.ImageIO;
@@ -64,5 +67,17 @@ public class MON_Ghost extends Entity {
     public void damageReaction(){
         actionLockCounter = 0;
         direction = gp.player.direction;
+    }
+    public void checkDrop(){
+        int i = new Random().nextInt(100)+1;
+        if(i<50){
+            dropItem(new Coin(gp));
+        }
+        if(i>50 && i<75){
+            dropItem(new Hearts(gp));
+        }
+        if(i>75 && i<100){
+            dropItem(new ManaCrystal(gp));
+        }
     }
 }
