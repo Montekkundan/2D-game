@@ -63,8 +63,9 @@ public class EventHandler {
             gp.playSoundEffect(3);
             gp.player.attackCanceled = true;
             gp.gameState = gameState;
-            gp.ui.currentDialogue = "You drank water. \nYou are now healed.";
+            gp.ui.currentDialogue = "You drank water. \nYour life and mana have been restored.";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
         }
 

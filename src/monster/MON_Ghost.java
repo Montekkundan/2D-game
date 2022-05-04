@@ -2,6 +2,7 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import object.Rock;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class MON_Ghost extends Entity {
         attack =5;
         defence = 0;
         exp = 2;
+        projectile = new Rock(gp);
         getImage();
     }
     public void getImage(){
@@ -51,6 +53,12 @@ public class MON_Ghost extends Entity {
                 direction = "right";
             }
             actionLockCounter = 0;
+        }
+        int i = new Random().nextInt(100)+1;
+        if(i>99 && projectile.alive == false && shotAvailableCounter == 30){
+            projectile.set(worldX ,worldY ,direction, true, this);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
         }
     }
     public void damageReaction(){
