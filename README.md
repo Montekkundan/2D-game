@@ -26,11 +26,11 @@
 - [x] character staus
 - [x] level up, damage calculation
 - [x] Inventory 
+- [x] Equip & use
+- [x] Projectiles
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Equip & use
-- [ ] Projectiles
 - [ ] Monster Projectiles
 - [ ] Item drops
 - [ ] Cutting trees
