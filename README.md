@@ -28,9 +28,9 @@
 - [x] Inventory 
 - [x] Equip & use
 - [x] Projectiles
+- [x] Monster Projectiles
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Monster Projectiles
 - [ ] Item drops
 - [ ] Cutting trees
