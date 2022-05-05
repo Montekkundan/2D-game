@@ -31,7 +31,9 @@
 - [x] Projectiles
 - [x] Monster Projectiles
 - [x] Item drops
+- [x] Cutting trees
+- [x] Particles
 ## Features pending-
 
 - [ ] stoping camera at the edge of the world
-- [ ] Cutting trees
+
