@@ -100,6 +100,10 @@ public class UI {
         if(gp.gameState == gp.optionState){
             drawOptionsScreen();
         }
+        //Game Over State
+        if(gp.gameState == gp.gameOverState){
+            drawGameOverScreen();
+        }
     }
 
     private void drawPlayerLife() {
@@ -384,6 +388,43 @@ public class UI {
         g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY-24, null);
         textY += gp.tileSize;
         g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY-24, null);
+
+    }
+    public void drawGameOverScreen(){
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,110F));
+        text = "Game Over";
+        // text shadow
+        g2.setColor(Color.red);
+        x = gettingCenterText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text,x,y);
+        // main
+        g2.setColor(Color.white);
+        g2.drawString(text,x-4,y-4);
+
+        //retry
+        g2.setFont(g2.getFont().deriveFont(50F));
+        text = "Retry";
+        x = gettingCenterText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text,x,y);
+        if(commandNumber == 0){
+            g2.drawString(">", x -40,y);
+        }
+
+        //back to title screen
+        text = "Quit";
+        x = gettingCenterText(text);
+        y += 55;
+        g2.drawString(text,x,y);
+        if(commandNumber == 1){
+            g2.drawString(">", x -40,y);
+        }
 
     }
     public void drawOptionsScreen(){
