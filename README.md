@@ -1,4 +1,10 @@
 # 2D-game
+
+![walk](https://user-images.githubusercontent.com/87750128/168538484-ac02bcfb-e8bd-45e2-910d-832334ea2731.gif)
+
+
+
+
 ## Known issues-
 - Player Selection: No change of character image.
 - npc, monster and coin png image background is black
