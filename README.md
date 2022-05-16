@@ -1,6 +1,10 @@
 # 2D-game
 
+  
 ![walk](https://user-images.githubusercontent.com/87750128/168538484-ac02bcfb-e8bd-45e2-910d-832334ea2731.gif)
+<img width="669" alt="bg" src="https://user-images.githubusercontent.com/87750128/168538835-70762dee-eee1-44b1-85ac-5d71f872aa45.png">
+
+
 
 
 
