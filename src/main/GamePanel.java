@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable{
     // Screen Settings
@@ -206,6 +205,12 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
         }
         else {
+            //Debug
+            long drawStart = 0;
+            if(keyH.showDebugText == true){
+            drawStart = System.nanoTime();
+            }
+
             //Tile
             tileM.draw(g2);
 
@@ -257,6 +262,22 @@ public class GamePanel extends JPanel implements Runnable{
 
             // UI
             ui.draw(g2);
+
+            // Debug
+            if(keyH.showDebugText == true) {
+                long drawEnd = System.nanoTime();
+                long passed = drawEnd - drawStart;
+                g2.setColor(Color.white);
+                int x = 10;
+                int y = 400;
+                int lineHeight = 30;
+                g2.drawString("WorldX: "+player.worldX,x,y); y += lineHeight;
+                g2.drawString("WorldY: "+player.worldY,x,y);y+=lineHeight;
+                g2.drawString("Col: "+(player.worldX + player.solidArea.x)/tileSize,x,y);y+=lineHeight;
+                g2.drawString("Row: "+(player.worldY + player.solidArea.y)/tileSize,x,y);y+=lineHeight;
+                g2.drawString("Draw Time: " + passed, x, y);
+            }
+
         }
         g2.dispose();
     }

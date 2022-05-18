@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, rightPressed, leftPressed, spacePressed, shotKeyPressed;
-
+    // Debug
+    boolean showDebugText = false;
     public KeyHandler(GamePanel gp){
         this.gp = gp;
     }
@@ -146,6 +147,17 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.optionState;
         }
+        if (code == KeyEvent.VK_T) {
+            if(showDebugText == false){
+                showDebugText = true;
+            }
+            else if(showDebugText == true){
+                showDebugText = false;
+            }
+        }
+        if (code == KeyEvent.VK_R) {
+            gp.tileM.loadMap("res/maps/worldv2.txt");
+        }
     }
     public void pauseState(int code){
         if (code == KeyEvent.VK_P){
@@ -264,6 +276,7 @@ public class KeyHandler implements KeyListener {
             if(gp.ui.commandNumber == 0){
                 gp.gameState = gp.playState;
                 gp.retry();
+                gp.playMusic(0);
             }
             else if(gp.ui.commandNumber == 1){
                 gp.gameState = gp.titleState;

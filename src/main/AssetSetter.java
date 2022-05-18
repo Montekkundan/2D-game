@@ -73,5 +73,19 @@ public class AssetSetter {
         gp.iTile[i]= new DryTree(gp,31,12);i++;
         gp.iTile[i]= new DryTree(gp,32,12);i++;
         gp.iTile[i]= new DryTree(gp,33,12);i++;
+        gp.iTile[i]= new DryTree(gp,21,13);i++;
+        gp.iTile[i]= new DryTree(gp,20,13);i++;
+        gp.iTile[i]= new DryTree(gp,19,13);i++;
+        gp.iTile[i]= new DryTree(gp,18,13);i++;
+        gp.iTile[i]= new DryTree(gp,17,13);i++;
+        gp.iTile[i]= new DryTree(gp,16,13);i++;
+        gp.iTile[i]= new DryTree(gp,15,13);i++;
+        gp.iTile[i]= new DryTree(gp,14,13);i++;
+        gp.iTile[i]= new DryTree(gp,13,13);i++;
+        gp.iTile[i]= new DryTree(gp,12,13);i++;
+        gp.iTile[i]= new DryTree(gp,11,13);i++;
+
+
+
     }
 }
