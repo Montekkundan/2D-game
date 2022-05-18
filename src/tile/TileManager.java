@@ -17,7 +17,7 @@ public class TileManager {
     public int[][][] mapTileNum;
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[50];
+        tile = new Tile[100];
         mapTileNum = new int[gp.maxMap][gp.maxWorldColumn][gp.maxWorldRow];
         loadMap("res/maps/worldv2.txt", 0);
         loadMap("res/maps/interior01.txt", 1);
@@ -81,6 +81,38 @@ public class TileManager {
             setup(47,"wall05", true); // bottom right
             setup(48,"wall06", true); // wall vertical
             setup(49,"floor", false);
+            setup(50,"wall07", true); // wall vertical break right
+            setup(51,"wall08", true); // wall vertical break left covered top
+            setup(52,"wall09", true); // wall horizontal break middle connect top covered
+            setup(53,"wall10", true); // wall vertical down end
+            setup(54,"window", true);
+            setup(72,"window2", true);
+            setup(55,"wall11", true); // wall vertical end right
+            setup(56,"wall12", true); // wall vertical end left
+            setup(57,"wall13", true); // wall vertical break right covered top
+            setup(58,"wall14", true); // wall vertical break middle connect
+            setup(59,"wall15", true); // wall horizontal break middle connect bottom covered
+            setup(60,"wall16", true); // wall vertical break middle connect top covered
+            setup(61,"wall17", true); // wall vertical top covered
+
+            // red carpet
+            setup(62,"c1", false); // carpet corner top left
+            setup(63,"c2", false); // carpet top covered
+            setup(64,"c3", false); // carpet corner top right
+            setup(65,"c4", false); // carpet corner left
+            setup(66,"c5", false); // carpet center
+            setup(67,"c6", false); // carpet corner right
+            setup(68,"c7", false); // carpet corner bottom left
+            setup(69,"c8", false); // carpet bottom covered
+            setup(70,"c9", false); // carpet corner bottom right
+            setup(71,"c10", false); // carpet right covered
+
+
+
+
+
+
+
 
         }
         catch (Exception e)

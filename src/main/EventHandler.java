@@ -51,9 +51,9 @@ public class EventHandler {
                 teleportBack(gp.dialogueState);
             }
             else if (hit(0,10, 12, "any")) {
-                map1(1,13,12,gp.dialogueState);
+                map1(1,12,20,gp.dialogueState);
             }
-            else if (hit(1,13, 12, "any")) {
+            else if (hit(1,12, 20, "any")) {
                 map0(0,10,12,gp.dialogueState);
             }
         }
