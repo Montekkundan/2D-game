@@ -281,6 +281,9 @@ public class Player extends Entity{
                 gp.obj[gp.currentMap][i] = null;
             }
 
+            else if(gp.obj[gp.currentMap][i].type == type_contact){
+
+            }
             // inventory items
             else {
                 String text;
