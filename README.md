@@ -11,7 +11,6 @@
 
 ## Known issues-
 - Player Selection: No change of character image.
-- npc, monster and coin png image background is black
 
 ## Features added-
 
