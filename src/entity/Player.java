@@ -43,10 +43,10 @@ public class Player extends Entity{
         setItems();
     }
     public void setDefaultValues(){
-//        worldX= gp.tileSize * 23;
-//        worldY= gp.tileSize * 21 ;
-        worldX= gp.tileSize * 12;
-        worldY= gp.tileSize * 20 ;
+        worldX= gp.tileSize * 23;
+        worldY= gp.tileSize * 21 ;
+//        worldX= gp.tileSize * 12;
+//        worldY= gp.tileSize * 20 ;
         speed =4;
         direction = "down";
         maxLife = 6;
@@ -313,7 +313,7 @@ public class Player extends Entity{
     }
     public void contactMonster(int i){
         if(i !=999){
-            if(invincible == false && gp.monster[gp.currentMap][i].dying == false) {
+            if(invincible == false && gp.monster[gp.currentMap][i].dying == false &&  gp.monster[gp.currentMap][i].invincible == false) {
                 gp.playSoundEffect(6);
                 int damage = gp.monster[gp.currentMap][i].attack - defence;
                 if(damage < 0){

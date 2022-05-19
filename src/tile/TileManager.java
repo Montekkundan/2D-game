@@ -107,13 +107,6 @@ public class TileManager {
             setup(70,"c9", false); // carpet corner bottom right
             setup(71,"c10", false); // carpet right covered
 
-
-
-
-
-
-
-
         }
         catch (Exception e)
         {
