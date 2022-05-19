@@ -11,6 +11,11 @@
 # Login
 ![login](https://user-images.githubusercontent.com/87750128/169230148-caac0089-3d13-450b-9ec0-10bdcb4b302a.gif)
 
+# Inventory
+![inventory](https://user-images.githubusercontent.com/87750128/169230472-2be23dd3-2b02-4289-8cab-47b9ee43b882.gif)
+
+# Npc
+![npc](https://user-images.githubusercontent.com/87750128/169230562-f4f8db40-b260-4c9e-a166-f3ff29e7624d.gif)
 
 
 
