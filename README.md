@@ -5,6 +5,11 @@
 <img width="669" alt="bg" src="https://user-images.githubusercontent.com/87750128/168538835-70762dee-eee1-44b1-85ac-5d71f872aa45.png">
 
 
+# Intro
+![intro](https://user-images.githubusercontent.com/87750128/169230125-8912efc0-0c66-4cca-bff8-f5980da9ed3b.gif)
+
+# Login
+![login](https://user-images.githubusercontent.com/87750128/169230148-caac0089-3d13-450b-9ec0-10bdcb4b302a.gif)
 
 
 
