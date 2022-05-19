@@ -17,6 +17,18 @@
 # Npc
 ![npc](https://user-images.githubusercontent.com/87750128/169230562-f4f8db40-b260-4c9e-a166-f3ff29e7624d.gif)
 
+# Monster
+![monster (1)](https://user-images.githubusercontent.com/87750128/169231216-571c1d08-271f-4067-866c-d25338a68ac9.gif)
+
+# Game over
+![gameover](https://user-images.githubusercontent.com/87750128/169230984-5dabfbf4-823e-4cff-b294-dd5f2cfbbfdf.gif)
+
+# Map transition
+![home (1)](https://user-images.githubusercontent.com/87750128/169231443-1d107369-4297-4f7b-bdde-f32101c790e2.gif)
+
+
+# Cutting wood
+![wood](https://user-images.githubusercontent.com/87750128/169231289-bae87f13-d6e3-4059-a1ba-a9e18690b326.gif)
 
 
 ## Known issues-
